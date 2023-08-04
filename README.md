@@ -8,19 +8,21 @@ After creating your account, you will be redirected to the home page where you w
 
 ## Requirements
 
-1.Install flask
+1.Install python3 and pip3 and setup virtual environment.
+
+2.Install flask
 
       pip3 install flask
 
-2.Install requirements file using the commands
+3.Install requirements file using the commands
 
       pip3 install -r requirements.txt
 
-3.Install flask_sqlalchemy
+4.Install flask_sqlalchemy
 
       pip3 install flask_sqlalchemy
 
-4.Install cryptodome for python using command:
+5.Install cryptodome for python using command:
 
       pip3 install pycryptodomex
 
