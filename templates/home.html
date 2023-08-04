@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+	margin:0;
+}
+ul {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  width: 25%;
+  height:100%;
+  position:fixed;
+  background-color: #a0c0e2;
+  overflow:auto;
+}
+li a {
+  display: block;
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+li a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: black;
+  color: white;
+}
+
+div{
+	margin-left:25%;
+	padding:10px 15px;
+	height:1000px;
+}
+table{
+	width:100%;
+	text-align:center;
+	padding:15px;
+}
+th,td
+{
+	border-bottom:1px solid #ddd;
+		padding:15px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+</style>
+</head>
+<body>
+
+
+
+<ul>
+ <li><a style= " padding: 20px 15px 55px 15px;font-size:55px"href="#home">Password Manager</a></li>
+  <li><a  href={{url_for("homelogin")}}>Home</a></li>
+  <li><a href={{url_for("manage_passwords")}}>Manage Passwords</a></li>
+  <li><a href={{url_for("passstrength")}}>Password Strength Checker</a></li>
+  <li><a href={{url_for("passgen")}}>Password Generator</a></li>
+  <li><a href={{url_for("logout")}}>Logout</a></li>
+</ul>
+
+<div>{% with messages = get_flashed_messages()%}
+	{%if messages%}
+		
+			{{messages[0]}}
+		
+	{% endif %}
+	{% endwith %}
+	
+	<br><br>
+	
+		<h2>Stored Passwords</h2><br>
+			{% if all_psws|length == 0 %}
+					<h5><NO Stored Passwords./h5>
+			{% else %}
+			<table class = "table">
+			<thead>
+			 <tr>
+                            <th scope="col">SNo</th>
+                            <th scope="col">Domain Name</th>
+                            <th scope="col">Userid</th>
+                            <!--<th scope="col">Copy Password</th>-->
+                            <th scope="col">Delete</th>
+                            <th scope="col" style:"visibility:hidden">Password</th>
+                            
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+              {% for psw in all_psws %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{psw.domainname}}</td>
+                <td>{{psw.username}}</td>
+                <!--
+                <td><button  onclick="myFunction()">Copy Password</button>
+                <p style:"visibility:hidden" id = "newpass" >{{psw.password}}</p>
+                 <script>
+		function myFunction() {
+		  // Get the text field
+		  var copyText = document.getElementById("newpass");
+
+  			// Select the text field
+		  copyText.select();
+		  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+		  // Copy the text inside the text field
+  		navigator.clipboard.writeText(copyText.value);
+  
+		  // Alert the copied text
+		  alert("Copied the text: " + copyText.value);
+		}
+		</script>
+                </td>-->
+                <td><a href="{{url_for("delete",sno = psw.sl)}}" type="button" >Delete</button></td>
+                <td><a href="{{url_for("view_decrypted",sno = psw.sl)}}" type="button">GetPassword</button></td>
+                
+                
+                
+              </tr>
+              
+              {% endfor %}
+            </tbody>
+            </table>
+              {% endif %}
+              
+
+	
+	
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<title> Signup</title>
+<head>
+<style>
+body
+{
+	background-color:ghostwhite;
+}
+div {
+	  background-color: lightblue;
+        text-align: center;
+        align-items:center;
+        border: 2px solid black;
+ 	  border-radius: 6px;
+	  font-size: 20px;
+	  padding: 50px;
+	  width:35%;
+	  margin-left:30% ;
+	  margin-top: 10%
+}
+input
+{
+  width:100%;
+  padding:12px 20px;
+  font-size: 15px;
+  border:3px-solid green;
+  box-sizing:border-box;
+}
+
+.signup
+{
+	color:white;
+        margin:10px;
+	width:100%;
+	border:2px solid black;
+	padding:12px 20px;
+	font-size: 15px;
+        background-color:black;
+        
+	
+
+}
+</style>
+</head>
+<body>
+	<div>
+	{% with messages = get_flashed_messages()%}
+	{%if messages%}
+			{{messages[0]}}
+		
+	{% endif %}
+	{% endwith %}
+	<form action= "{{url_for("signup")}}" method = "POST"><br>
+	<input type="text" name = "uname" placeholder="Enter UserID" required><br><br>
+      	<input type="password" name = "pwd1" placeholder="Enter Password" required><br><br>
+	<input type="password" name = "pwd2" placeholder="Re-Enter Password" required><br><br>
+	
+        <button type = "submit" class = "signup">Signup</button>
+      
+      
+	</div>
+</body>
+</html>

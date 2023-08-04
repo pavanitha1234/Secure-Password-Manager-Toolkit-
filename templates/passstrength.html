@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script>
+$(document).ready(function(){  
+var outputTarget = $("#pb");
+var strength=-1;
+ function checkPasswordStrength(password){
+        var strength = 0;
+        if(password.length>=4&&password.length<=6){
+            strength+=1;
+        }
+        if(password.length>6&&password.length<=8){
+            strength+=1;
+        }
+        if(password.length>8){
+            strength+=1;
+        }
+        if(password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)){
+            strength+=1;
+        }
+        if(password.match(/([A-Z])/)){
+            strength+=1;
+        }
+        if(password.match(/([0-9])/)){
+            strength+=1;
+        }
+        if(password.match((/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))){
+            strength+=1;
+        }
+        return strength;
+   }
+    $("#password").keyup(function(){
+        strength = checkPasswordStrength($("#password").val());
+        outputTarget.removeClass(function (index, css) {
+                  return (css.match (/\level\S+/g) || []).join(' ');
+          });
+        if($("#password").val()==""){
+            strength=-1;
+        }
+        outputTarget.addClass('level'+strength);
+        $("#l").text("Level "+strength);
+    });
+});
+</script>
+<style>
+body{
+	margin:0;
+}
+ul {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  width: 25%;
+  height:100%;
+  position:fixed;
+  background-color: #a0c0e2;
+  overflow:auto;
+}
+li a {
+  display: block;
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+li a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: black;
+  color: white;
+}
+
+#div1{
+	margin-left:25%;
+	padding:30px 15px;
+	
+}
+
+.jumbotron{
+	opacity: 0.8;
+}
+.level-1{
+	width:0%;
+}
+.level0{
+	width:30%;
+
+}
+.level1{
+	width:40%;
+	background-color: indianred;
+}
+.level2{
+	width:60%;
+	background-color: goldenrod!important;
+}
+.level3{
+	width:70%;
+	background-color: lightblue;
+}
+.level4{
+	width:80%;
+	background-color: lightgreen;
+}
+.level5{
+	width:100%;
+}
+
+
+</style>
+</head>
+<body>
+
+<ul>
+ <li><a style= " padding: 20px 15px 55px 15px;font-size:55px"href="#home">Password Manager</a></li>
+  <li><a  href={{url_for("home")}}>Home</a></li>
+  <li><a href={{url_for("manage_passwords")}}>Manage Passwords</a></li>
+  <li><a href={{url_for("passstrength")}}>Password Strength Checker</a></li>
+  <li><a href={{url_for("passgen")}}>Password Generator</a></li>
+  <li><a href={{url_for("logout")}}>Logout</a></li>
+</ul>
+
+<div id="div1">
+
+<div id="div2">
+<div style="width:100%" class="container">
+            
+             <div class="jumbotron">  
+                <form class="form-horizontal">
+               
+                        <label class="control-label">Password</label><br>
+                   
+                        <input type="Password" placeholder="Enter Password" class="form-control"  title="Please Enter Your Password Here" id="password" required>
+                           
+                       
+                </form>
+               
+            </div>
+        </div>
+         <div style="width:100%" class="container">
+             <div class="progress">
+                 <div class="progress-bar progress-bar-success progress-bar-striped active" id="pb" role="progressbar"><p style="font-size: 20px;" id="l">Level</p>
+                 </div>
+         </div> 
+        </div>
+        <div style="width:100%" class="container">
+            <div class="jumbotron">
+                <h4 class="text-danger">Password Strength</h4>
+                <p class="text-danger">* Must have atleast 6 characters<br>* Must contain Upper and Lower case alphabets<br>* Must contain digits<br>* Must have atleast one special character</p></div>
+        </div>
+
+</div>
+</div>
+
+</body>
+</html>
+

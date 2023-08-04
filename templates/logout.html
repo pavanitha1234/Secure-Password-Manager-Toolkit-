@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+	background-color: #E0EAF5;
+	margin:0;
+}
+ul {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  width: 25%;
+  height:100%;
+  position:fixed;
+  background-color: #a0c0e2;
+  overflow:auto;
+}
+li a {
+  display: block;
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+li a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: black;
+  color: white;
+}
+
+input[type=text] {
+  
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width:100%;
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#btn1{
+  
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: black;
+}
+
+#div2 {
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 2px solid black;
+  padding: 20px;
+  width : 60%;
+  height:40%;
+  margin-left:15%;
+margin-top:10%;
+}
+#div1{
+	
+	margin-left:25%;
+	padding:10px 15px;
+	
+}
+
+#btn1
+{
+	text-decoration:none;
+}
+
+</style>
+</head>
+<body>
+
+
+
+<ul>
+ <li><a style= " padding: 20px 15px 55px 15px;font-size:55px"href="#home">Password Manager</a></li>
+ <li><a  href={{url_for("homelogin")}}>Home</a></li>
+  <li><a href={{url_for("manage_passwords")}}>Manage Passwords</a></li>
+  <li><a href={{url_for("passstrength")}}>Password Strength Checker</a></li>
+  <li><a href={{url_for("passgen")}}>Password Generator</a></li>
+  <li><a href={{url_for("logout")}}>Logout</a></li>
+</ul>
+
+<div id="div1">
+
+<div id="div2">
+<p style= "font-size:30px">Are you sure you want to logout?</p>
+
+<button style="width:25%" id ="btn1" ><a href={{url_for("logout")}}>Yes</button>
+
+<button style="width:25%" id ="btn1"><a href={{url_for("homelogin")}>No</button>
+</div>
+</div>
+
+</body>
+</html>
+
+
+
